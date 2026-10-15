@@ -1,0 +1,7 @@
+protocol,scenario,data_transmissions,retransmissions,delivered,ack_transmissions,completion_time
+gbn,A: Reliable,200,0,200,200,100.0
+sr,A: Reliable,200,0,200,200,100.0
+gbn,B: Packet loss,264,64,200,244,274.0
+sr,B: Packet loss,236,36,200,217,376.0
+gbn,C: Mixed errors,260,60,200,255,303.2037904059973
+sr,C: Mixed errors,243,43,200,217,392.6152312224445
