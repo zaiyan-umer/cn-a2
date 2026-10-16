@@ -10,8 +10,8 @@ run receives its `state` dictionary explicitly.
 
 ## Run
 
-Python 3.10 or newer is required. Individual transfers and tests use only the
-standard library. Matplotlib is needed for the experiment graph.
+Python 3.10 or newer is required. Individual transfers use only the standard
+library. Matplotlib is needed for the experiment graph.
 
 ```bash
 python3 -m venv .venv
@@ -27,9 +27,6 @@ python main.py --protocol sr --packets 200 --window 4 --bits 3 \
 
 # Six assignment experiments, quiet transfers, consolidated results
 python main.py --experiments --seed 42
-
-# Deterministic correctness tests
-python -m unittest discover -s tests -v
 ```
 
 `--quiet` suppresses detailed transfer logs but keeps the final statistics table.
@@ -190,15 +187,5 @@ For inspection, `create_simulation(settings)` returns the initialized state and
 `run_simulation(state)` runs it once. All mutable state is local to that run;
 the caller's settings dictionary is copied.
 
-## Tests
-
-The 14 tests inject deterministic DATA/ACK losses and corruption, compare
-retransmission strategies, verify ordered delivery and wrapping, and exercise
-FIFO delay and short timeouts. Regression checks compare all six seed-42 runs
-against the original implementation's counters and exact completion times.
-Additional checks ensure that runs have independent dictionaries and channel
-corruption does not mutate the original frame. Experiment results are always
-computed by the simulator; the recorded expectations exist only in the tests.
-
-The test suite uses standard `unittest.TestCase` classes, but the application is
-entirely procedural. No ready-made reliable-transport library is used.
+The application is entirely procedural. No ready-made reliable-transport library
+is used.
